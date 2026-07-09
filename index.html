@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's Your Smile Confidence Score? | Reflections Dental Group</title>
+<meta name="description" content="Take the free 60-second Smile Confidence Quiz from Reflections Dental in Calgary. Discover your Smile Confidence Profile plus claim a free 15-minute consult with Dr. Mehta and a rendered preview of your future smile.">
+<style>
+  :root {
+    --orange: #F26522;
+    --orange-dark: #d9550f;
+    --deep-blue: #1F4E96;
+    --accent-blue: #2E7BC4;
+    --navy: #1A2233;
+    --bg: #FFFFFF;
+    --soft: #F4F7FB;
+    --border: #E1E8F0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--soft);
+    color: var(--navy);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  header.site {
+    background: var(--bg);
+    border-bottom: 3px solid var(--orange);
+    padding: 14px 20px;
+    text-align: center;
+  }
+  header.site .wordmark {
+    color: var(--deep-blue);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  header.site .wordmark .spark { color: var(--orange); }
+  header.site .sub {
+    color: var(--accent-blue);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 24px 16px 64px; }
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 4px 20px rgba(31, 78, 150, 0.07);
+  }
+  .progress-track {
+    height: 8px; background: var(--border); border-radius: 4px;
+    margin-bottom: 24px; overflow: hidden; display: none;
+  }
+  .progress-fill {
+    height: 100%; width: 0; background: var(--orange);
+    border-radius: 4px; transition: width 0.3s ease;
+  }
+  h1 { color: var(--deep-blue); font-size: 1.7rem; line-height: 1.25; margin-bottom: 14px; }
+  h2 { color: var(--deep-blue); font-size: 1.35rem; line-height: 1.3; margin-bottom: 12px; }
+  h3 { color: var(--accent-blue); font-size: 1.05rem; margin-bottom: 10px; }
+  p { margin-bottom: 14px; }
+  .lede { font-size: 1.05rem; }
+  .btn {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 15px 34px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  .btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .btn-row { margin-top: 22px; text-align: center; }
+  .option {
+    display: block; width: 100%; text-align: left;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: var(--navy);
+    cursor: pointer;
+    transition: border-color 0.12s ease, background 0.12s ease;
+  }
+  .option:hover { border-color: var(--accent-blue); background: #F6FAFF; }
+  .option.selected { border-color: var(--orange); background: #FFF3EC; }
+  .qnum { color: var(--accent-blue); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px; }
+  .hint { color: #5A6B85; font-size: 0.88rem; margin-bottom: 14px; }
+  input[type="text"], input[type="email"], input[type="tel"] {
+    width: 100%;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 1rem;
+    margin-bottom: 14px;
+    color: var(--navy);
+  }
+  input:focus { outline: none; border-color: var(--accent-blue); }
+  label.field { font-weight: 600; font-size: 0.92rem; display: block; margin-bottom: 6px; color: var(--deep-blue); }
+  .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 0.88rem; color: #45536B; margin: 6px 0 4px; }
+  .consent input { margin-top: 4px; }
+  .error { color: #C0392B; font-size: 0.88rem; margin-bottom: 10px; display: none; }
+  .result-kicker {
+    display: inline-block; background: var(--deep-blue); color: #fff;
+    border-radius: 999px; padding: 6px 16px; font-size: 0.8rem;
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .result-block { margin-bottom: 18px; }
+  .cta-sub { color: var(--accent-blue); font-size: 0.92rem; text-align: center; margin-top: 10px; }
+  .aspiration-line { font-style: italic; color: #45536B; border-left: 4px solid var(--orange); padding-left: 14px; margin-top: 20px; }
+  footer.fine {
+    text-align: center; font-size: 0.78rem; color: #7A8AA3; margin-top: 28px; padding: 0 12px;
+  }
+  footer.fine a { color: var(--accent-blue); }
+  .back-link { display: inline-block; margin-top: 16px; color: #7A8AA3; font-size: 0.85rem; background: none; border: none; cursor: pointer; text-decoration: underline; }
+  @media (max-width: 480px) {
+    .card { padding: 24px 18px; }
+    h1 { font-size: 1.45rem; }
+  }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wordmark"><span class="spark">+++</span> Reflections <span style="font-weight:400">Dental Group</span></div>
+  <div class="sub">Smile Confidence Quiz</div>
+</header>
+
+<div class="wrap">
+  <div class="progress-track" id="progress"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="card" id="screen"></div>
+  <footer class="fine">
+    Reflections Dental Group · 4600 Crowchild Trail NW #505, Calgary, AB ·
+    <a href="https://reflectionsdentalgroup.com" target="_blank" rel="noopener">reflectionsdentalgroup.com</a><br>
+    This quiz is for information only and is not dental advice or a diagnosis.
+  </footer>
+</div>
+
+<script>
+// CONFIG: swap these two when the client provides final destinations.
+const WORKER_URL = "https://reflections-quiz-relay.jameson-84b.workers.dev/submit";
+const BOOKING_URL = "https://reflectionsdentalgroup.com/contact"; // TODO: replace with the consult booking link
+const PRIVACY_URL = "https://reflectionsdentalgroup.com"; // TODO: replace with the privacy policy URL
+const QUIZ_ID = "reflections-smile-confidence";
+
+const state = { step: -1, answers: {}, scores: { C: 0, M: 0, P: 0, R: 0 }, first_name: "", aspiration: "", milestone: "", readiness_tag: "", milestone_tag: false, multi: [] };
+
+const QUESTIONS = [
+  { id: "q1", type: "name", num: "Question 1 of 9", prompt: "First, what should we call you?" },
+  { id: "q2", type: "single", num: "Question 2 of 9", prompt: "When someone points a camera at you, what's your first instinct?", options: [
+    { label: "I do a closed-lip smile, or I turn away", scores: { C: 2 } },
+    { label: "I smile, then immediately grab the phone to check the photo", scores: { M: 2 } },
+    { label: "I smile, but I instantly notice my teeth aren't quite right", scores: { P: 2 } },
+    { label: "I smile naturally, I just wonder if it could look even better", scores: { R: 2 } } ] },
+  { id: "q3", type: "single", num: "Question 3 of 9", prompt: "Think about the last time you felt self-conscious about your smile. What set it off?", options: [
+    { label: "Honestly, everyday moments. I catch myself hiding it a lot", scores: { C: 2 } },
+    { label: "One specific high-stakes moment (a date, a presentation, an event)", scores: { M: 2 } },
+    { label: "A specific flaw I keep noticing (color, a chip, a gap, the shape)", scores: { P: 2 } },
+    { label: "Nothing major, I'm just curious about improving it", scores: { R: 2 } } ] },
+  { id: "q4", type: "single", num: "Question 4 of 9", prompt: "Which of these sounds most like you?", options: [
+    { label: "My smile genuinely holds me back in life", scores: { C: 3 } },
+    { label: "My confidence only dips in certain situations", scores: { M: 3 } },
+    { label: "I like my smile overall, but a few things bug me", scores: { P: 3 } },
+    { label: "I'm fairly confident, I just want to invest in leveling up", scores: { R: 3 } } ] },
+  { id: "q5", type: "multi", max: 2, num: "Question 5 of 9", prompt: "What bothers you most about your smile right now?", hint: "Pick up to 2.", options: [
+    { label: "Color or staining", scores: { P: 1 } },
+    { label: "Chips, cracks, or worn-down edges", scores: { P: 1 } },
+    { label: "Gaps or spacing", scores: { P: 1 } },
+    { label: "Crooked or uneven shape", scores: { P: 1 } },
+    { label: "Old dental work that no longer matches", scores: { P: 1 } },
+    { label: "It makes me look older or more tired than I feel", scores: { C: 1 } } ] },
+  { id: "q6", type: "single", num: "Question 6 of 9", prompt: "How often do you catch yourself hiding your smile?", hint: "Hand over mouth, closed lips, staying out of photos.", options: [
+    { label: "All the time. It's basically a habit now", scores: { C: 3 } },
+    { label: "In certain situations, yes", scores: { M: 3 } },
+    { label: "Rarely, only when I notice a specific flaw", scores: { P: 2 } },
+    { label: "Almost never", scores: { R: 2 } } ] },
+  { id: "q7", type: "single", num: "Question 7 of 9", prompt: "If you had a smile you genuinely loved, what's the first thing you'd do differently?", options: [
+    { label: "Finally stop hiding it and smile freely, everywhere", scores: { C: 1 }, aspiration: "stop hiding it and smile freely, everywhere" },
+    { label: "Feel unstoppable in photos, dating, and big moments", scores: { M: 1 }, aspiration: "feel unstoppable in photos, dating, and big moments" },
+    { label: "Stop obsessing over that one thing that bugs me", scores: { P: 1 }, aspiration: "stop obsessing over the one thing that bugs you" },
+    { label: "Show up as the most polished version of me", scores: { R: 1 }, aspiration: "show up as the most polished version of you" } ] },
+  { id: "q8", type: "single", num: "Question 8 of 9", prompt: "Where are you in thinking about doing something about it?", options: [
+    { label: "I'm ready. I just need the right place and a plan", readiness: "ready-now" },
+    { label: "I'm seriously considering it in the next few months", readiness: "considering" },
+    { label: "I'm exploring and gathering information", readiness: "exploring" },
+    { label: "Just curious for now", readiness: "curious" } ] },
+  { id: "q9", type: "single", num: "Question 9 of 9", prompt: "Is there a moment coming up that's making you think about your smile?", options: [
+    { label: "A wedding (mine or someone close)", milestone: "the wedding", mtag: true },
+    { label: "A reunion, big birthday, or special event", milestone: "your big event", mtag: true },
+    { label: "A new job, promotion, or career move", milestone: "your next career move", mtag: true },
+    { label: "A fresh chapter, I'm doing this for me", milestone: "this fresh chapter", mtag: false },
+    { label: "No specific date, I just want to feel better about it", milestone: "feeling better about it", mtag: false } ] }
+];
+
+const OUTCOMES = {
+  C: { name: "The Concealer", slug: "concealer",
+    headline: "{first_name}, you're a Concealer.",
+    subhead: "And you've probably been one for longer than you'd like to admit.",
+    body: [
+      "Your answers tell a clear story: you don't just dislike your smile, you actively hide it. The closed-lip photos, the hand that comes up when you laugh, the way you've quietly opted out of moments other people don't think twice about. That's not vanity. That's your smile costing you confidence every single day.",
+      "<strong>Here's what matters:</strong> the fact that it affects you this much is exactly why the right smile makeover can be genuinely life-changing for you, not just cosmetic. Modern porcelain veneers and smile design can correct color, shape, chips, and spacing in a single, tailored plan, designed around your face and how you want to feel, not a one-size template.",
+      "Most Concealers tell us the same thing afterward: <em>\"I didn't realize how much energy I was spending hiding.\"</em>",
+      "<strong>Your next step:</strong> a free, no-pressure 15-minute smile design consult with Dr. Mehta. You'll see a rendered image of what your smile could look like, and you decide from there. Nothing gets decided in the chair but you."
+    ],
+    aspirationLine: "You said you'd want to {aspiration}. Let's make that the default, not the exception." },
+  M: { name: "The Moment-Maker", slug: "moment-maker",
+    headline: "{first_name}, you're a Moment-Maker.",
+    subhead: "Your confidence is strong, until the stakes get high.",
+    body: [
+      "Day to day, you're fine. But put a camera, a date, a big presentation, or {milestone} in front of you, and suddenly your smile is the thing you're thinking about instead of the moment itself. You've learned to manage it, but \"managing it\" means part of you is always slightly holding back.",
+      "<strong>Here's the opportunity:</strong> those high-stakes moments are exactly where a confident smile pays off most. Smile design and veneers are built for precisely this, giving you a smile that photographs beautifully and holds up in the moments that matter, so you can be fully present instead of self-conscious.",
+      "Imagine walking into the next big one not hoping your smile cooperates, but knowing it will.",
+      "<strong>Your next step:</strong> a free 15-minute consult with Dr. Mehta, including a rendered preview of your future smile. Relaxed, informative, zero pressure."
+    ],
+    aspirationLine: "You told us you want to {aspiration}. That starts with a smile you never have to think about." },
+  P: { name: "The Perfectionist", slug: "perfectionist",
+    headline: "{first_name}, you're a Perfectionist.",
+    subhead: "You smile freely, but you know exactly what you'd change.",
+    body: [
+      "You're not hiding your smile, and good, you shouldn't. But you've got a running list: the color, the chip, the gap, the one tooth that never sat right. It's specific, and it's real, and it's the kind of thing you notice every time you look in the mirror even if no one else mentions it.",
+      "<strong>Here's the good news:</strong> specific is easy to work with. Smile design exists for people who know exactly what bothers them. Veneers let us correct color, shape, edges, and spacing with real precision, so the details that have been bugging you simply stop being there. No compromise, no \"close enough.\"",
+      "<strong>Your next step:</strong> bring your list to a free 15-minute consult with Dr. Mehta. He'll go through each item, tell you honestly what's possible, and you'll see a rendered preview of the corrected result."
+    ],
+    aspirationLine: "You said you'd love to {aspiration}. Precision is kind of our thing." },
+  R: { name: "The Ready Refresher", slug: "ready-refresher",
+    headline: "{first_name}, you're a Ready Refresher.",
+    subhead: "You're confident already. You just want the upgrade.",
+    body: [
+      "You're not coming from insecurity, you're coming from ambition. Your smile is fine, but \"fine\" isn't what you're after. You invest in yourself, and a polished, refined smile is the next natural step, especially with {milestone} on your radar.",
+      "<strong>Here's what to know:</strong> smile design is at its best when we're enhancing rather than rescuing. Veneers can take a good smile and make it genuinely striking, brighter, more even, more \"you at your best,\" while still looking completely natural. This is the fun end of what we do.",
+      "<strong>Your next step:</strong> a free 15-minute consult with Dr. Mehta to explore what an upgrade looks like for you, plus a rendered preview so you can see the range, from subtle refinement to full transformation."
+    ],
+    aspirationLine: "You want to {aspiration}. Let's design the smile that gets you there." }
+};
+
+const el = (id) => document.getElementById(id);
+const screen = el("screen");
+
+function renderWelcome() {
+  el("progress").style.display = "none";
+  screen.innerHTML = `
+    <h1>Your smile says more than you think.</h1>
+    <p class="lede">The way you feel about your smile shows up everywhere: in photos, on dates, in meetings, in the mirror. This quick quiz reveals your <strong>Smile Confidence Profile</strong> and what's actually holding you back, in about 60 seconds.</p>
+    <p class="lede">No judgment. No jargon. Just clarity on what a modern smile makeover could do for you. Plus: everyone who finishes can claim a <strong>free 15-minute consult with Dr. Mehta</strong> and a <strong>rendered preview of their future smile</strong>.</p>
+    <div class="btn-row"><button class="btn" onclick="next()">Start the Quiz →</button></div>`;
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[state.step];
+  el("progress").style.display = "block";
+  el("progressFill").style.width = ((state.step) / (QUESTIONS.length + 1) * 100) + "%";
+  state.multi = [];
+
+  if (q.type === "name") {
+    screen.innerHTML = `
+      <div class="qnum">${q.num}</div>
+      <h2>${q.prompt}</h2>
+      <input type="text" id="nameInput" placeholder="Your first name" maxlength="40" autocomplete="given-name">
+      <div class="error" id="err">Please tell us your first name.</div>
+      <div class="btn-row"><button class="btn" onclick="submitName()">Continue →</button></div>`;
+    el("nameInput").focus();
+    el("nameInput").addEventListener("keydown", (e) => { if (e.key === "Enter") submitName(); });
+    return;
+  }
+
+  let html = `<div class="qnum">${q.num}</div><h2>${q.prompt}</h2>`;
+  if (q.hint) html += `<p class="hint">${q.hint}</p>`;
+  q.options.forEach((opt, i) => {
+    html += `<button class="option" id="opt${i}" onclick="pick(${i})">${opt.label}</button>`;
+  });
+  if (q.type === "multi") html += `<div class="btn-row"><button class="btn" id="multiNext" onclick="submitMulti()" disabled>Continue →</button></div>`;
+  screen.innerHTML = html;
+}
+
+function submitName() {
+  const v = el("nameInput").value.trim();
+  if (!v) { el("err").style.display = "block"; return; }
+  state.first_name = v.charAt(0).toUpperCase() + v.slice(1);
+  next();
+}
+
+function pick(i) {
+  const q = QUESTIONS[state.step];
+  const opt = q.options[i];
+  if (q.type === "multi") {
+    const btn = el("opt" + i);
+    const idx = state.multi.indexOf(i);
+    if (idx >= 0) { state.multi.splice(idx, 1); btn.classList.remove("selected"); }
+    else if (state.multi.length < q.max) { state.multi.push(i); btn.classList.add("selected"); }
+    el("multiNext").disabled = state.multi.length === 0;
+    return;
+  }
+  if (opt.scores) for (const k in opt.scores) state.scores[k] += opt.scores[k];
+  if (opt.aspiration) state.aspiration = opt.aspiration;
+  if (opt.readiness) state.readiness_tag = opt.readiness;
+  if (opt.milestone) { state.milestone = opt.milestone; state.milestone_tag = !!opt.mtag; }
+  state.answers[q.id] = opt.label;
+  next();
+}
+
+function submitMulti() {
+  const q = QUESTIONS[state.step];
+  state.answers[q.id] = state.multi.map(i => q.options[i].label);
+  state.multi.forEach(i => {
+    const s = q.options[i].scores;
+    if (s) for (const k in s) state.scores[k] += s[k];
+  });
+  next();
+}
+
+function next() {
+  state.step++;
+  if (state.step < QUESTIONS.length) renderQuestion();
+  else renderLeadForm();
+}
+
+function archetype() {
+  const order = ["C", "M", "P", "R"];
+  let best = order[0];
+  order.forEach(k => { if (state.scores[k] > state.scores[best]) best = k; });
+  return best;
+}
+
+function renderLeadForm() {
+  el("progressFill").style.width = (QUESTIONS.length / (QUESTIONS.length + 1) * 100) + "%";
+  screen.innerHTML = `
+    <h2>Your Smile Confidence Profile is ready.</h2>
+    <p>Enter your details to see your results. Everyone who books a spot also gets a <strong>free 15-minute consult with Dr. Mehta and a personalized rendering of what your new smile could look like.</strong> No cost, no obligation.</p>
+    <label class="field">First name</label>
+    <input type="text" id="lfName" value="${state.first_name.replace(/"/g, "&quot;")}">
+    <label class="field">Email</label>
+    <input type="email" id="lfEmail" placeholder="you@example.com" autocomplete="email">
+    <label class="field">Phone</label>
+    <input type="tel" id="lfPhone" placeholder="(587) 000-0000" autocomplete="tel">
+    <div class="consent">
+      <input type="checkbox" id="lfConsent">
+      <span>I agree to be contacted about my results by Reflections Dental Group. <a href="${PRIVACY_URL}" target="_blank" rel="noopener">Privacy policy</a></span>
+    </div>
+    <div class="error" id="err"></div>
+    <div class="btn-row"><button class="btn" id="lfBtn" onclick="submitLead()">See My Results →</button></div>`;
+}
+
+function fail(msg) { const e = el("err"); e.textContent = msg; e.style.display = "block"; }
+
+async function submitLead() {
+  const name = el("lfName").value.trim();
+  const email = el("lfEmail").value.trim();
+  const phone = el("lfPhone").value.replace(/[^0-9+]/g, "");
+  if (!name) return fail("Please enter your first name.");
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail("Please enter a valid email address.");
+  if (phone.replace(/\D/g, "").length < 10) return fail("Please enter a valid phone number.");
+  if (!el("lfConsent").checked) return fail("Please check the consent box so we can send your results.");
+  state.first_name = name;
+  el("lfBtn").disabled = true;
+  el("lfBtn").textContent = "One moment...";
+
+  const arch = archetype();
+  const payload = {
+    quiz_id: QUIZ_ID,
+    first_name: name,
+    email: email,
+    phone: el("lfPhone").value.trim(),
+    archetype: OUTCOMES[arch].slug,
+    readiness_tag: state.readiness_tag,
+    milestone_tag: state.milestone_tag,
+    aspiration: state.aspiration,
+    milestone: state.milestone,
+    scores: state.scores,
+    answers: state.answers,
+    page: location.href
+  };
+  try {
+    await fetch(WORKER_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+  } catch (e) { /* never block the visitor's results on a network hiccup */ }
+  renderResult(arch);
+}
+
+function tokens(str) {
+  return str.replaceAll("{first_name}", state.first_name)
+            .replaceAll("{aspiration}", state.aspiration || "love your smile again")
+            .replaceAll("{milestone}", state.milestone || "the next big moment");
+}
+
+function renderResult(arch) {
+  const o = OUTCOMES[arch];
+  el("progressFill").style.width = "100%";
+  let html = `
+    <div class="result-kicker">Your Smile Confidence Profile</div>
+    <h1>${tokens(o.headline)}</h1>
+    <h3>${tokens(o.subhead)}</h3>`;
+  o.body.forEach(p => { html += `<p class="result-block">${tokens(p)}</p>`; });
+  html += `
+    <div class="btn-row"><a class="btn" href="${BOOKING_URL}" target="_blank" rel="noopener">Claim My Free Consult + Smile Preview →</a></div>
+    <p class="cta-sub">15 minutes with Dr. Mehta. A rendered image of your future smile. Zero pressure.</p>
+    <p class="aspiration-line">${tokens(o.aspirationLine)}</p>
+    <div style="text-align:center"><button class="back-link" onclick="location.reload()">Retake the quiz</button></div>`;
+  screen.innerHTML = html;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+renderWelcome();
+</script>
+</body>
+</html>
