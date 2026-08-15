@@ -118,6 +118,24 @@
   }
   .result-block { margin-bottom: 18px; }
   .cta-sub { color: var(--accent-blue); font-size: 0.92rem; text-align: center; margin-top: 10px; }
+  .guide-card {
+    display: block;
+    border: 2px solid var(--accent-blue);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 22px 0 4px;
+    text-decoration: none;
+    color: var(--navy);
+    background: #F6FAFF;
+    transition: background 0.12s ease, border-color 0.12s ease;
+  }
+  .guide-card:hover { background: #ECF4FF; border-color: var(--deep-blue); }
+  .guide-card .gk {
+    color: var(--accent-blue); font-size: 0.72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em; display: block; margin-bottom: 4px;
+  }
+  .guide-card .gt { font-weight: 700; color: var(--deep-blue); font-size: 1.02rem; display: block; }
+  .guide-card .gs { font-size: 0.88rem; color: #5A6B85; display: block; margin-top: 3px; }
   .aspiration-line { font-style: italic; color: #45536B; border-left: 4px solid var(--orange); padding-left: 14px; margin-top: 20px; }
   footer.fine {
     text-align: center; font-size: 0.78rem; color: #7A8AA3; margin-top: 28px; padding: 0 12px;
@@ -204,7 +222,7 @@ const QUESTIONS = [
 ];
 
 const OUTCOMES = {
-  C: { name: "The Concealer", slug: "concealer",
+  C: { name: "The Concealer", slug: "concealer", guide: "guides/smile-concealer.pdf", guideTitle: "What a smile makeover actually involves",
     headline: "{first_name}, you're a Concealer.",
     subhead: "And you've probably been one for longer than you'd like to admit.",
     body: [
@@ -214,7 +232,7 @@ const OUTCOMES = {
       "<strong>Your next step:</strong> a free, no-pressure 15-minute smile design consult with Dr. Mehta. You'll see a rendered image of what your smile could look like, and you decide from there. Nothing gets decided in the chair but you."
     ],
     aspirationLine: "You said you'd want to {aspiration}. Let's make that the default, not the exception." },
-  M: { name: "The Moment-Maker", slug: "moment-maker",
+  M: { name: "The Moment-Maker", slug: "moment-maker", guide: "guides/smile-moment-maker.pdf", guideTitle: "How to time a smile around a date",
     headline: "{first_name}, you're a Moment-Maker.",
     subhead: "Your confidence is strong, until the stakes get high.",
     body: [
@@ -224,7 +242,7 @@ const OUTCOMES = {
       "<strong>Your next step:</strong> a free 15-minute consult with Dr. Mehta, including a rendered preview of your future smile. Relaxed, informative, zero pressure."
     ],
     aspirationLine: "You told us you want to {aspiration}. That starts with a smile you never have to think about." },
-  P: { name: "The Perfectionist", slug: "perfectionist",
+  P: { name: "The Perfectionist", slug: "perfectionist", guide: "guides/smile-perfectionist.pdf", guideTitle: "How to describe exactly what you want",
     headline: "{first_name}, you're a Perfectionist.",
     subhead: "You smile freely, but you know exactly what you'd change.",
     body: [
@@ -233,7 +251,7 @@ const OUTCOMES = {
       "<strong>Your next step:</strong> bring your list to a free 15-minute consult with Dr. Mehta. He'll go through each item, tell you honestly what's possible, and you'll see a rendered preview of the corrected result."
     ],
     aspirationLine: "You said you'd love to {aspiration}. Precision is kind of our thing." },
-  R: { name: "The Ready Refresher", slug: "ready-refresher",
+  R: { name: "The Ready Refresher", slug: "ready-refresher", guide: "guides/smile-ready-refresher.pdf", guideTitle: "Choosing how much to change",
     headline: "{first_name}, you're a Ready Refresher.",
     subhead: "You're confident already. You just want the upgrade.",
     body: [
@@ -401,6 +419,11 @@ function renderResult(arch) {
     <h3>${tokens(o.subhead)}</h3>`;
   o.body.forEach(p => { html += `<p class="result-block">${tokens(p)}</p>`; });
   html += `
+    <a class="guide-card" href="${o.guide}" target="_blank" rel="noopener">
+      <span class="gk">Your free guide</span>
+      <span class="gt">${o.guideTitle}</span>
+      <span class="gs">Four pages, written to be useful wherever you end up going. Yours to keep.</span>
+    </a>
     <div class="btn-row"><a class="btn" href="${BOOKING_URL}" target="_blank" rel="noopener">Claim My Free Consult + Smile Preview →</a></div>
     <p class="cta-sub">15 minutes with Dr. Mehta. A rendered image of your future smile. Zero pressure.</p>
     <p class="aspiration-line">${tokens(o.aspirationLine)}</p>
