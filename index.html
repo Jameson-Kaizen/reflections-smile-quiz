@@ -27,17 +27,17 @@
   header.site {
     background: var(--bg);
     border-bottom: 3px solid var(--orange);
-    padding: 14px 20px;
+    padding: 18px 20px 14px;
     text-align: center;
   }
-  header.site .wordmark {
-    color: var(--deep-blue);
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+  header.site .logo {
+    height: 84px;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
   }
-  header.site .wordmark .spark { color: var(--orange); }
   header.site .sub {
+    margin-top: 9px;
     color: var(--accent-blue);
     font-size: 0.72rem;
     text-transform: uppercase;
@@ -127,12 +127,13 @@
   @media (max-width: 480px) {
     .card { padding: 24px 18px; }
     h1 { font-size: 1.45rem; }
+    header.site .logo { height: 64px; }
   }
 </style>
 </head>
 <body>
 <header class="site">
-  <div class="wordmark"><span class="spark">+++</span> Reflections <span style="font-weight:400">Dental Group</span></div>
+  <img class="logo" src="rdg-logo-colour.png" alt="Reflections Dental Group" width="900" height="563">
   <div class="sub">Smile Confidence Quiz</div>
 </header>
 
