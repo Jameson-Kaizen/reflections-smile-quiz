@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>What's Your Smile Confidence Score? | Reflections Dental Group</title>
-<meta name="description" content="Take the free 60-second Smile Confidence Quiz from Reflections Dental in Calgary. Discover your Smile Confidence Profile plus claim a free 15-minute consult with Dr. Mehta and a rendered preview of your future smile.">
+<meta name="description" content="Take the free 60-second Smile Confidence Quiz from Reflections Dental in Calgary. Discover your Smile Confidence Profile plus claim a free 30-minute consult with Dr. Mehta and a rendered preview of your future smile.">
 <style>
   :root {
     --orange: #F26522;
@@ -229,7 +229,7 @@ const OUTCOMES = {
       "Your answers tell a clear story: you don't just dislike your smile, you actively hide it. The closed-lip photos, the hand that comes up when you laugh, the way you've quietly opted out of moments other people don't think twice about. That's not vanity. That's your smile costing you confidence every single day.",
       "<strong>Here's what matters:</strong> the fact that it affects you this much is exactly why the right smile makeover can be genuinely life-changing for you, not just cosmetic. Modern porcelain veneers and smile design can correct color, shape, chips, and spacing in a single, tailored plan, designed around your face and how you want to feel, not a one-size template.",
       "Most Concealers tell us the same thing afterward: <em>\"I didn't realize how much energy I was spending hiding.\"</em>",
-      "<strong>Your next step:</strong> a free, no-pressure 15-minute smile design consult with Dr. Mehta. You'll see a rendered image of what your smile could look like, and you decide from there. Nothing gets decided in the chair but you."
+      "<strong>Your next step:</strong> a free, no-pressure 30-minute smile design consult with Dr. Mehta. You'll see a rendered image of what your smile could look like, and you decide from there. Nothing gets decided in the chair but you."
     ],
     aspirationLine: "You said you'd want to {aspiration}. Let's make that the default, not the exception." },
   M: { name: "The Moment-Maker", slug: "moment-maker", guide: "guides/smile-moment-maker.pdf", guideTitle: "How to time a smile around a date",
@@ -239,7 +239,7 @@ const OUTCOMES = {
       "Day to day, you're fine. But put a camera, a date, a big presentation, or {milestone} in front of you, and suddenly your smile is the thing you're thinking about instead of the moment itself. You've learned to manage it, but \"managing it\" means part of you is always slightly holding back.",
       "<strong>Here's the opportunity:</strong> those high-stakes moments are exactly where a confident smile pays off most. Smile design and veneers are built for precisely this, giving you a smile that photographs beautifully and holds up in the moments that matter, so you can be fully present instead of self-conscious.",
       "Imagine walking into the next big one not hoping your smile cooperates, but knowing it will.",
-      "<strong>Your next step:</strong> a free 15-minute consult with Dr. Mehta, including a rendered preview of your future smile. Relaxed, informative, zero pressure."
+      "<strong>Your next step:</strong> a free 30-minute consult with Dr. Mehta, including a rendered preview of your future smile. Relaxed, informative, zero pressure."
     ],
     aspirationLine: "You told us you want to {aspiration}. That starts with a smile you never have to think about." },
   P: { name: "The Perfectionist", slug: "perfectionist", guide: "guides/smile-perfectionist.pdf", guideTitle: "How to describe exactly what you want",
@@ -248,7 +248,7 @@ const OUTCOMES = {
     body: [
       "You're not hiding your smile, and good, you shouldn't. But you've got a running list: the color, the chip, the gap, the one tooth that never sat right. It's specific, and it's real, and it's the kind of thing you notice every time you look in the mirror even if no one else mentions it.",
       "<strong>Here's the good news:</strong> specific is easy to work with. Smile design exists for people who know exactly what bothers them. Veneers let us correct color, shape, edges, and spacing with real precision, so the details that have been bugging you simply stop being there. No compromise, no \"close enough.\"",
-      "<strong>Your next step:</strong> bring your list to a free 15-minute consult with Dr. Mehta. He'll go through each item, tell you honestly what's possible, and you'll see a rendered preview of the corrected result."
+      "<strong>Your next step:</strong> bring your list to a free 30-minute consult with Dr. Mehta. He'll go through each item, tell you honestly what's possible, and you'll see a rendered preview of the corrected result."
     ],
     aspirationLine: "You said you'd love to {aspiration}. Precision is kind of our thing." },
   R: { name: "The Ready Refresher", slug: "ready-refresher", guide: "guides/smile-ready-refresher.pdf", guideTitle: "Choosing how much to change",
@@ -257,7 +257,7 @@ const OUTCOMES = {
     body: [
       "You're not coming from insecurity, you're coming from ambition. Your smile is fine, but \"fine\" isn't what you're after. You invest in yourself, and a polished, refined smile is the next natural step, especially with {milestone} on your radar.",
       "<strong>Here's what to know:</strong> smile design is at its best when we're enhancing rather than rescuing. Veneers can take a good smile and make it genuinely striking, brighter, more even, more \"you at your best,\" while still looking completely natural. This is the fun end of what we do.",
-      "<strong>Your next step:</strong> a free 15-minute consult with Dr. Mehta to explore what an upgrade looks like for you, plus a rendered preview so you can see the range, from subtle refinement to full transformation."
+      "<strong>Your next step:</strong> a free 30-minute consult with Dr. Mehta to explore what an upgrade looks like for you, plus a rendered preview so you can see the range, from subtle refinement to full transformation."
     ],
     aspirationLine: "You want to {aspiration}. Let's design the smile that gets you there." }
 };
@@ -270,7 +270,7 @@ function renderWelcome() {
   screen.innerHTML = `
     <h1>Your smile says more than you think.</h1>
     <p class="lede">The way you feel about your smile shows up everywhere: in photos, on dates, in meetings, in the mirror. This quick quiz reveals your <strong>Smile Confidence Profile</strong> and what's actually holding you back, in about 60 seconds.</p>
-    <p class="lede">No judgment. No jargon. Just clarity on what a modern smile makeover could do for you. Plus: everyone who finishes can claim a <strong>free 15-minute consult with Dr. Mehta</strong> and a <strong>rendered preview of their future smile</strong>.</p>
+    <p class="lede">No judgment. No jargon. Just clarity on what a modern smile makeover could do for you. Plus: everyone who finishes can claim a <strong>free 30-minute consult with Dr. Mehta</strong> and a <strong>rendered preview of their future smile</strong>.</p>
     <div class="btn-row"><button class="btn" onclick="next()">Start the Quiz →</button></div>`;
 }
 
@@ -354,7 +354,7 @@ function renderLeadForm() {
   el("progressFill").style.width = (QUESTIONS.length / (QUESTIONS.length + 1) * 100) + "%";
   screen.innerHTML = `
     <h2>Your Smile Confidence Profile is ready.</h2>
-    <p>Enter your details to see your results. Everyone who books a spot also gets a <strong>free 15-minute consult with Dr. Mehta and a personalized rendering of what your new smile could look like.</strong> No cost, no obligation.</p>
+    <p>Enter your details to see your results. Everyone who books a spot also gets a <strong>free 30-minute consult with Dr. Mehta and a personalized rendering of what your new smile could look like.</strong> No cost, no obligation.</p>
     <label class="field">First name</label>
     <input type="text" id="lfName" value="${state.first_name.replace(/"/g, "&quot;")}">
     <label class="field">Email</label>
@@ -425,7 +425,7 @@ function renderResult(arch) {
       <span class="gs">Four pages, written to be useful wherever you end up going. Yours to keep.</span>
     </a>
     <div class="btn-row"><a class="btn" href="${BOOKING_URL}" target="_blank" rel="noopener">Claim My Free Consult + Smile Preview →</a></div>
-    <p class="cta-sub">15 minutes with Dr. Mehta. A rendered image of your future smile. Zero pressure.</p>
+    <p class="cta-sub">30 minutes with Dr. Mehta. A rendered image of your future smile. Zero pressure.</p>
     <p class="aspiration-line">${tokens(o.aspirationLine)}</p>
     <div style="text-align:center"><button class="back-link" onclick="location.reload()">Retake the quiz</button></div>`;
   screen.innerHTML = html;
